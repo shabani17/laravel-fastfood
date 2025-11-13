@@ -12,4 +12,17 @@ class Transaction extends Model
 
     protected $table = 'transactions';
     protected $guarded = [];
+
+    public function getStatusAttribute($status) 
+    {
+        switch ($status) {
+            case '0':
+                $status = 'ناموفق';
+                break;
+            case '1':
+                $status = 'موفق';
+                break;
+        }
+        return $status;
+    }
 }

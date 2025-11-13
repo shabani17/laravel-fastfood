@@ -57,6 +57,7 @@ Route::prefix('profile')->middleware('auth')->group(function() {
     Route::get('/wishlist', [ProfileController::class, 'wishList'])->name('profile.wishlist');
     Route::get('/remove-from-wishlist', [ProfileController::class, 'removeFromWishList'])->name('profile.wishlist.remove');
     Route::get('/orders', [ProfileController::class, 'orders'])->name('profile.order');
+    Route::get('/transactions', [ProfileController::class, 'transactions'])->name('profile.transaction');
 
 });
 

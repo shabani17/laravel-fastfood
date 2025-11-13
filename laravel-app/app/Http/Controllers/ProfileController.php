@@ -100,6 +100,18 @@ class ProfileController extends Controller
         return redirect()->route('profile.address')->with('success', 'آدرس شما با موفقیت ویرایش شد');
     }
 
+    public function orders(){
+        $orders= auth()->user()->orders()->orderByDesc('created_at')->with('address', 'orderItems')->paginate(3);
+        return view('profile.orders', compact('orders'));
+
+    }
+
+    public function transactions(){
+        $transactions= auth()->user()->transactions()->orderByDesc('created_at')->paginate(3);
+        return view('profile.transactions', compact('transactions'));
+
+    }
+
     public function wishlist() 
     {
         $wishlist = auth()->user()->wishlist;
@@ -135,4 +147,6 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('warning', 'محصول مورد نظر از لیست علاقه مندی ها حذف شد');
     }
+
+    
 }

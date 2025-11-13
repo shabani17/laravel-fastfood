@@ -46,7 +46,17 @@ class Product extends Model
                     $query->orderBy('price');
                     break;
                 case 'bestseller':
-                    $query;
+                    $orders= Order::where('payment_status', 1 )->with('products')->get();
+                    
+                    $productIds = [];
+                    foreach($orders as $order){
+                        foreach($order->products as $product){
+                            array_push($productIds, $product->id);
+                        }
+                    }
+
+                    // dd($productIds, array_count_values($productIds), array_keys(array_count_values($productIds)));
+                    $query->whereIn('id', array_keys(array_count_values($productIds)));
                     break;
                 case 'sale':
                     $query->where('sale_price', '!=', 0)->where('date_on_sale_from', '<', Carbon::now())->where('date_on_sale_to', '>', Carbon::now());
