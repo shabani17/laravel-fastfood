@@ -2,7 +2,8 @@
 
 use App\Models\Slider;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeControler;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\SliderController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,7 @@ use App\Http\Controllers\ContactUsController;
 |
 */
 
-Route::get('/',[HomeControler::class , 'index'])->name('dashboard');
+Route::get('/',[HomeController::class , 'index'])->name('dashboard');
 
 Route::group(['prefix' => 'sliders'], function(){
     Route::get('/', [SliderController::class, 'index'])->name('slider.index');
@@ -88,3 +90,6 @@ Route::group(['prefix' => 'coupons'], function () {
     Route::put('/{coupon}', [CouponController::class, 'update'])->name('coupon.update');
     Route::delete('/{coupon}', [CouponController::class, 'destroy'])->name('coupon.destroy');
 });
+
+Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction.index');
