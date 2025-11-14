@@ -11,7 +11,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link
+                {{ request()->is('users*') ? 'active' : ''}}"
+                href="{{ route('user.index') }}">
                     <i class="bi bi-people me-2"></i>
                     کاربران
                 </a>
@@ -32,6 +34,8 @@
                     دسته بندی
                 </a>
             </li>
+            
+
             <li class="nav-item">
                 <a class="nav-link
                 {{ request()->is('orders*')? 'active' : ''}}"

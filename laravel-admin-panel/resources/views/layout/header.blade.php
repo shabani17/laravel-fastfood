@@ -30,8 +30,10 @@
         <div class="w-100"></div>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap d-flex align-items-center">
-                <span class="nav-link text-white">علی شیخ</span>
-                <a class="nav-link text-white px-3" href="#">خروج</a>
+                @auth
+                    <span class="nav-link text-white">{{ auth()->user()->name }}</span>
+                    <a class="nav-link text-white px-3" href="{{ route('auth.logout') }}">خروج</a>
+                @endauth
             </div>
         </div>
     </header>
