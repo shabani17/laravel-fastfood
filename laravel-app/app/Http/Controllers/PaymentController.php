@@ -42,7 +42,7 @@ class PaymentController extends Controller
             $coupon = Coupon::where('code', $request->coupon_code)->where('expired_at', '>', Carbon::now())->first();
             
             if ($coupon == null) {
-                dd($coupon);
+                
                 return redirect()->route('cart.index')->withErrors(['code' => 'کد تخفیف وارد شده وجود ندارد']);
             }
 
@@ -93,7 +93,7 @@ class PaymentController extends Controller
         $trackId= $request->trackId;
         $result = json_decode($this->verifyRequest($merchant, $trackId));
     
-        dd($result);
+        
         if ($result->result == 100) {
             OrderController::update($merchant, $result->trackId);
 

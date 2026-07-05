@@ -50,7 +50,7 @@ class OrderController extends Controller
     {
         DB::beginTransaction();
 
-        $transaction = Transaction::where('token', $merchant)->firstOrFail();
+        $transaction = Transaction::where('token', $trackId)->firstOrFail();
 
         $transaction->update([
             'status' => 1,

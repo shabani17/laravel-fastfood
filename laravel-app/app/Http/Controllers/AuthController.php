@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     try {
         $user = User::where('cellphone', $request->cellphone)->first();
-        $otpCode = mt_rand(10000, 999999);
+        $otpCode = mt_rand(100000, 999999);
         $loginToken = Hash::make('FBScslddsh$&clsdc*dcncd@DCD');
 
         if ($user) {
@@ -37,8 +37,8 @@ class AuthController extends Controller
         ]);
     }
 
-    // از همون کاربر واقعی استفاده کنید
-    // $user->notify(new SendOtpToUser($otpCode));
+   
+    $user->notify(new SendOtpToUser($otpCode));
 
     return response()->json(['login_token' => $loginToken], 200);
     } catch (\Exception $ex) {
